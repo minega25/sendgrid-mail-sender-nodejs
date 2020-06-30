@@ -12,6 +12,10 @@ app.use(formidable());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.get('/', function (req, res) {
+  res.send('app running');
+});
+
 app.post('/contact', async function (req, res) {
   const { to, from, fname, lname, email, subject, message } = req.fields;
 
@@ -30,4 +34,6 @@ app.post('/contact', async function (req, res) {
   }
 });
 
-app.listen(3000, () => console.log('App started on port 3000'));
+app.listen(process.env.PORT || 3000, () =>
+  console.log('Server started successfully')
+);
